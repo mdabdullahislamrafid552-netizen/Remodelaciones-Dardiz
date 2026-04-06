@@ -41,22 +41,22 @@ export default function Projects() {
   ];
 
   return (
-    <div className="bg-[#f8f9fa] min-h-screen pb-32">
+    <div className="bg-[#f8f9fa] min-h-screen pb-24 md:pb-32">
       {/* Page Header */}
-      <div className="pt-32 pb-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="pt-24 md:pt-32 pb-16 md:pb-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="block text-[#D49800] font-sans font-medium tracking-[0.3em] uppercase text-xs mb-6">
+            <span className="block text-[#D49800] font-sans font-medium tracking-[0.3em] uppercase text-xs sm:text-sm mb-6">
               Portafolio
             </span>
-            <h1 className="text-5xl md:text-7xl font-display font-light text-[#0a0a0a] leading-tight mb-8">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-light text-[#0a0a0a] leading-tight mb-8 text-balance">
               Obras <span className="font-medium">Selectas.</span>
             </h1>
-            <p className="text-xl text-gray-500 font-light max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-500 font-light max-w-2xl mx-auto text-balance">
               Una colección de nuestros proyectos más representativos, donde el diseño se encuentra con la ejecución perfecta.
             </p>
           </motion.div>
@@ -64,8 +64,8 @@ export default function Projects() {
       </div>
 
       {/* Projects Grid - Asymmetric */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mt-16 md:mt-24">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -82,18 +82,20 @@ export default function Projects() {
                   src={project.image} 
                   alt={project.title} 
                   className={`w-full object-cover transform group-hover:scale-105 transition-transform duration-1000 ${
-                    project.size === 'large' ? 'h-[600px]' : 'h-[400px]'
+                    project.size === 'large' ? 'h-[400px] md:h-[600px]' : 'h-[400px]'
                   }`}
                   referrerPolicy="no-referrer"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
               <div className="flex justify-between items-start">
                 <div>
-                  <h3 className="text-2xl font-display font-medium text-[#0a0a0a] mb-2 group-hover:text-[#D49800] transition-colors duration-300">
+                  <h3 className="text-2xl font-display font-medium text-[#0a0a0a] mb-2 group-hover:text-[#D49800] transition-colors duration-300 text-balance">
                     {project.title}
                   </h3>
-                  <p className="text-xs tracking-widest text-gray-500 uppercase">
+                  <p className="text-xs sm:text-sm tracking-widest text-gray-500 uppercase">
                     {project.category}
                   </p>
                 </div>

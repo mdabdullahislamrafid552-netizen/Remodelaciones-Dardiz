@@ -106,33 +106,45 @@ export default function Layout() {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div 
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="md:hidden fixed inset-0 top-[72px] bg-white z-40 h-screen"
+              initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+              animate={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
+              exit={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+              transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
+              className="md:hidden fixed inset-0 top-[72px] bg-white z-40 h-[calc(100vh-72px)] overflow-y-auto"
             >
-              <div className="flex flex-col px-6 pt-10 space-y-8">
-                {navLinks.map((link) => (
-                  <Link
+              <div className="flex flex-col px-6 pt-12 pb-24 space-y-8 min-h-full">
+                {navLinks.map((link, i) => (
+                  <motion.div
                     key={link.name}
-                    to={link.path}
-                    className={`text-3xl font-display font-light tracking-tight ${
-                      location.pathname === link.path
-                        ? 'text-[#D49800]'
-                        : 'text-[#0a0a0a]'
-                    }`}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 + i * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
                   >
-                    {link.name}
-                  </Link>
+                    <Link
+                      to={link.path}
+                      className={`text-4xl sm:text-5xl font-display font-light tracking-tight block py-2 ${
+                        location.pathname === link.path
+                          ? 'text-[#D49800]'
+                          : 'text-[#0a0a0a]'
+                      }`}
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
                 ))}
-                <div className="pt-8 border-t border-gray-100">
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+                  className="pt-12 mt-auto border-t border-gray-100"
+                >
                   <Link
                     to="/contacto"
-                    className="block w-full text-center bg-[#D49800] text-white px-6 py-4 font-medium uppercase tracking-wider"
+                    className="block w-full text-center bg-[#0a0a0a] text-white px-6 py-5 text-sm font-medium uppercase tracking-widest hover:bg-[#D49800] transition-colors duration-500"
                   >
                     Cotizar Proyecto
                   </Link>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
           )}

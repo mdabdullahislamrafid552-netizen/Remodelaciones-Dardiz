@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
-import { useState } from 'react';
+import { useState, FormEvent, ChangeEvent } from 'react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -11,36 +11,36 @@ export default function Contact() {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     // Handle form submission
     alert('Mensaje enviado. Nos pondremos en contacto pronto.');
     setFormData({ name: '', email: '', phone: '', service: '', message: '' });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
     <div className="bg-[#f8f9fa] min-h-screen">
       {/* Page Header */}
-      <div className="pt-32 pb-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="pt-24 md:pt-32 pb-16 md:pb-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="max-w-4xl"
           >
-            <span className="block text-[#D49800] font-sans font-medium tracking-[0.3em] uppercase text-xs mb-6">
+            <span className="block text-[#D49800] font-sans font-medium tracking-[0.3em] uppercase text-xs sm:text-sm mb-6">
               Inicie su Proyecto
             </span>
-            <h1 className="text-5xl md:text-7xl font-display font-light text-[#0a0a0a] leading-tight mb-8">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-light text-[#0a0a0a] leading-tight mb-8 text-balance">
               Hablemos de su <br />
               <span className="font-medium">Visión.</span>
             </h1>
-            <p className="text-xl text-gray-500 font-light max-w-2xl">
+            <p className="text-lg md:text-xl text-gray-500 font-light max-w-2xl text-balance">
               Nuestro equipo de expertos está listo para asesorarle y convertir sus ideas en una realidad tangible.
             </p>
           </motion.div>
@@ -48,8 +48,8 @@ export default function Contact() {
       </div>
 
       {/* Contact Content */}
-      <div className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="py-20 md:py-24">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
             
             {/* Contact Info */}
@@ -59,7 +59,7 @@ export default function Contact() {
               viewport={{ once: true }}
               transition={{ duration: 1 }}
             >
-              <h2 className="text-3xl font-display font-medium text-[#0a0a0a] mb-12">
+              <h2 className="text-3xl md:text-4xl font-display font-medium text-[#0a0a0a] mb-12">
                 Información de Contacto
               </h2>
               
@@ -124,8 +124,8 @@ export default function Contact() {
               viewport={{ once: true }}
               transition={{ duration: 1 }}
             >
-              <div className="bg-white p-10 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.05)]">
-                <h2 className="text-2xl font-display font-medium text-[#0a0a0a] mb-8">
+              <div className="bg-white p-8 sm:p-10 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.05)]">
+                <h2 className="text-2xl md:text-3xl font-display font-medium text-[#0a0a0a] mb-8">
                   Solicitar Cotización
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-8">
